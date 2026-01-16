@@ -1,0 +1,248 @@
+/* WRAPPER */
+.wrapper {
+    width: 100vw;
+}
+
+/* BASIC STYLES */
+h1, h2, h3, h4, h5, h6, p, span, button, a {
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    font-size: 15px;
+    font-weight: lighter;
+}
+
+/* CONTACT SECTION */
+.contact-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px;
+    height: 100vh;
+    width: 100vw;
+}
+
+.contact-section p {
+    color: black;
+}
+
+/* ABOUT SECTION */
+.about-section {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 60px;
+}
+
+.about-section img {
+    width: 540px;
+    border: 1px solid black;
+}
+
+.about-section p {
+    color: black;
+    padding-right: 30px;
+    /* position: absolute; */
+}
+
+@media (max-width: 1024px) {
+    .about-section {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 120px;
+    }
+
+    .about-section img {
+        width: 100%;
+    }
+
+    .about-section p {
+        color: black;
+        padding-right: 0;
+        padding-bottom: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-section {
+        padding-top: 90px;
+        padding-right: 30px;
+        padding-left: 30px;
+        padding-bottom: 20px;
+    }
+
+    .about-section p {
+        color: black;
+        padding-right: 0;
+        padding-bottom: 20px;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+    h1, h2, h3, h4, h5, h6, p, span, button, a {
+        font-size: 12px;
+    }
+}
+
+/* RAISED TEXT */
+.raised-strong--dark {
+    color: #fff;
+    text-shadow:
+    0px 1px 0 rgba(255,255,255,.2),
+    1px  1px 0 rgba(0,0,0,1),
+    0   10px 24px rgba(0,0,0,.55) !important;
+}
+
+/* RIPPED TAPE EFFECT */
+.torn-tape{
+    /* set your colors & tear depth */
+    --tape: #0e0e0e; /* overridden by variants */
+    --ink:  #fff;
+    --rip:  12px;
+    /* --pad-y: .35rem;
+    --pad-x: .6rem; */
+    --pad-y: 0px;
+    --pad-x: 0px;
+
+    position: relative;
+    display: inline-block;
+    color: var(--ink);
+    line-height: 1.1;
+    padding: var(--pad-y) var(--pad-x);
+    /* important: keep its own stacking so ::before can sit behind without disappearing */
+    isolation: isolate;
+    z-index: 0;
+    overflow: visible; /* avoid clipping when rotated */
+}
+
+.torn-tape::before{
+    content: "";
+    position: absolute;
+    inset: calc(var(--pad-y)*-1 - 2px) calc(var(--pad-x)*-1 - 6px);
+    z-index: -1;               /* sits behind the text */
+    pointer-events: none;
+    transform: rotate(-1deg);
+
+    /* default paper base (variants will override background + shadow) */
+    background: var(--tape);
+    box-shadow:
+        0 12px 20px rgba(0,0,0,.35),
+        0 0 0 1px rgba(255,255,255,.05) inset,
+        0 .5px 0 rgba(255,255,255,.06) inset;
+
+    /* ripped top & bottom using masks (with webkit prefix) */
+    -webkit-mask:
+        linear-gradient(#000 0 0) top / 100% calc(100% - var(--rip)) no-repeat,
+        radial-gradient(8px at 6% 0, #000 98%, transparent) top left / 16% var(--rip) repeat-x,
+        /* radial-gradient(8px at 10% 100%, #000 98%, transparent) bottom left / 14% var(--rip) repeat-x; */
+            mask:
+        linear-gradient(#000 0 0) top / 100% calc(100% - var(--rip)) no-repeat,
+        radial-gradient(8px at 6% 0, #000 98%, transparent) top left / 16% var(--rip) repeat-x,
+        /* radial-gradient(120px at 10% 100%, #000 98%, transparent) bottom left / 100% var(--rip) repeat-x; */
+}
+
+/* ===== black tape variants ===== */
+
+/* Matte black gaffer (cloth texture, low sheen) */
+.torn-tape--gaffer{
+    --tape:#0e0e0e;  --ink:#fff;  --rip:12px;
+}
+.torn-tape--gaffer::before{
+background:
+    /* faint cross-weave */
+    repeating-linear-gradient(45deg, rgba(255,255,255,.035) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(135deg, rgba(255,255,255,.02) 0 1px, transparent 1px 5px),
+    /* soft sheen */
+    linear-gradient(165deg, rgba(255,255,255,.10), rgba(255,255,255,0) 55%),
+    var(--tape);
+
+filter: 
+    contrast(1.05) 
+    brightness(.98);
+}
+
+/* Glossy black electrical (harder highlights) */
+.torn-tape--electrical{
+    --tape:#090909;  --ink:#fff;
+}
+.torn-tape--electrical::before{
+background:
+    /* specular bands */
+    linear-gradient(90deg,
+    rgba(255,255,255,.22) 0%,
+    rgba(255,255,255,0) 14% 55%,
+    rgba(255,255,255,.16) 75%,
+    rgba(255,255,255,0) 86%),
+    /* micro scuffs */
+    repeating-linear-gradient(0deg, rgba(255,255,255,.03) 0 1px, transparent 1px 3px),
+    var(--tape);
+
+filter: contrast(1.08) brightness(1.02);
+}
+
+/* tiny organic angle variation if you use many */
+.torn-tape:nth-of-type(2n)::before{ transform: rotate(.6deg); }
+.torn-tape:nth-of-type(3n)::before{ transform: rotate(-.4deg); }
+
+/* ===== Fallback if masks aren’t allowed (some builders/older engines) ===== */
+@supports not (mask: linear-gradient(#000 0 0)) {
+    .torn-tape::before {
+    /* simulate rough edge with a jagged clip-path */
+    clip-path: polygon(
+        0% 0%, 8% 3%, 16% 0%, 24% 4%, 32% 0%, 40% 5%,
+        48% 0%, 56% 3%, 64% 0%, 72% 4%, 80% 0%, 88% 3%, 100% 0%,
+        100% 100%, 92% 97%, 84% 100%, 76% 96%, 68% 100%, 60% 95%,
+        52% 100%, 44% 97%, 36% 100%, 28% 96%, 20% 100%, 12% 97%, 0% 100%
+        );
+    }
+}
+
+
+/* SHAKE EFFECT */
+:root {
+    --shake-ms: 280ms;      /* duration */
+    --shake-x: 6px;         /* left/right distance */
+    --shake-rot: 2deg;      /* small tilt */
+}
+
+@keyframes ui-shake {
+    0%   { transform: translate3d(0,0,0) rotate(0); }
+    10%  { transform: translate3d(-var(--shake-x),0,0) rotate(-var(--shake-rot)); }
+    20%  { transform: translate3d(var(--shake-x),0,0) rotate(var(--shake-rot)); }
+    30%  { transform: translate3d(-var(--shake-x),0,0) rotate(-var(--shake-rot)); }
+    40%  { transform: translate3d(var(--shake-x),0,0) rotate(var(--shake-rot)); }
+    50%  { transform: translate3d(-var(--shake-x),0,0) rotate(-var(--shake-rot)); }
+    60%  { transform: translate3d(var(--shake-x),0,0) rotate(var(--shake-rot)); }
+    70%  { transform: translate3d(-var(--shake-x),0,0) rotate(-var(--shake-rot)); }
+    80%  { transform: translate3d(var(--shake-x),0,0) rotate(var(--shake-rot)); }
+    90%  { transform: translate3d(-var(--shake-x),0,0) rotate(-var(--shake-rot)); }
+    100% { transform: translate3d(0,0,0) rotate(0); }
+}
+
+  /* Opt-in target */
+.shakeable { 
+    display: inline-block; 
+    transform: translateZ(0); 
+    will-change: transform; 
+}
+
+  /* Applied by JS to replay animation on demand */
+.shake-now { 
+    animation: ui-shake var(--shake-ms) cubic-bezier(.36,.07,.19,.97); 
+}
+
+  /* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+        .shake-now { animation: none !important; }
+}
+
+
+/* LAZY LOADER */
+img.ph-fade   { opacity: 0; transition: opacity .35s ease; }
+img.ph-loaded { opacity: 1; }
+
+
+
+

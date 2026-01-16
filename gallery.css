@@ -1,0 +1,185 @@
+html, body { height: 100%; margin: 0; }
+
+  /* Scroll container */
+.gallery {
+    height: 100vh;
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0;
+    gap: 0;                         /* no gaps */
+    cursor: pointer;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x;            /* allow natural horizontal pan on touch */
+}
+
+/* .gallery.is-grabbing { 
+    cursor: grabbing; 
+} */
+
+  /* Hide scrollbar (WebKit + Firefox + old IE/Edge) */
+.gallery::-webkit-scrollbar { 
+    display: none; 
+}
+
+.gallery { 
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+}
+
+  /* Items: 40vw wide, full height */
+.gallery-container {
+    flex: 0 0 40vw;
+    height: 100%;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.video-gallery-container {
+    /* flex: 0 0 40vw; */
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-container img:hover, .gallery-container .hero-video:hover {
+    filter: blur(6px);
+}
+
+/* MOBILE BLUR FUNCTION ON TAP */
+.gallery-container img {
+    transition: filter 0.4s ease;
+}
+
+.gallery-container img.blurred {
+    filter: blur(6px);
+}
+/* END */
+
+.gallery-container a,
+.gallery-container img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.gallery-container img {
+    object-fit: cover;
+}
+
+/* MOTION */
+.hero-video {
+    width:100%;
+    height:100%;
+    object-fit:cover; /* fill & crop to container */
+    display:block;
+}
+
+.gallery-name {
+    position: absolute;
+    bottom: 0;
+    height: 30px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    background: black;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    transform: rotate(3deg);
+    pointer-events: none;
+}
+
+.gallery-name h2 {
+    text-transform: uppercase;
+}
+
+/* page name */
+.page-name {
+    position: absolute;
+    width: 100dvw;
+    background-color: black;
+    bottom: 0;
+    z-index: 999;
+    padding: 0 50px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: default;
+    height: 36px;
+}
+
+.page-name a {
+    text-decoration: none;
+    /* font-size: 40px; */
+    cursor: pointer;
+}
+
+.page-name span {
+    text-transform: uppercase;
+}
+
+.page-name a:hover, .page-name a:active, .page-name a:focus {
+    opacity: 0.7;
+}
+
+.page-name .arrow {
+    font-size: 18px;
+}
+
+/* gallery container unset */
+.gallery-container-unset {
+    cursor: default;
+}
+
+.gallery-container-unset img:hover {
+    filter: unset;
+}
+
+
+/******** MEDIA QUERIES *******/
+
+/* XXL LARGE DESKTOP */
+@media (max-width: 1536px) {
+    .gallery-container {
+        min-width: 45%;
+    }
+}
+
+/* XL LARGE DESKTOP */
+@media (max-width: 1280px) {
+    .gallery-container {
+        min-width: 55%;
+    }
+}
+
+/* LARGE DESKTOP / TABLET */
+@media (max-width: 1024px) {
+    .gallery-container {
+        min-width: 65%;
+    }
+}
+
+/* TABLET / LARGE PHONE */
+@media (max-width: 768px) {
+    .gallery-container {
+        min-width: 75%;
+    }
+}
+
+/* SMALL TABLET / MOBILE LANDSCAPE */
+@media (max-width: 640px) {
+    .gallery-container {
+        min-width: 85%;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+    .gallery-container {
+        min-width: 95%;
+    }
+}
