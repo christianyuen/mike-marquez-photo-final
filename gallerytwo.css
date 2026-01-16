@@ -1,4 +1,6 @@
-/* Scroll container */
+html, body { height: 100%; margin: 0; }
+
+  /* Scroll container */
 .gallery {
     height: 100dvh;
     display: flex;
@@ -12,31 +14,31 @@
     touch-action: pan-x;            /* allow natural horizontal pan on touch */
 }
 
-/* Hide scrollbar (WebKit + Firefox + old IE/Edge) */
-.gallery::-webkit-scrollbar {
-    display: none;
-}
-.gallery {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+/* .gallery.is-grabbing { 
+    cursor: grabbing; 
+} */
+
+  /* Hide scrollbar (WebKit + Firefox + old IE/Edge) */
+.gallery::-webkit-scrollbar { 
+    display: none; 
 }
 
-/* Items: default (portrait-ish) */
+.gallery { 
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+}
+
+  /* Items: 40vw wide, full height */
 .gallery-container {
-    flex: 0 0 40vw;                 /* baseline width */
+    flex: 0 0 40vw;
     height: 100dvh;
     margin: 0;
     position: relative;
     overflow: hidden;
 }
 
-/* Landscape items become wide */
-.gallery-container.landscape {
-    flex: 0 0 70vw;                 /* wider for landscape */
-}
-
-/* Video container */
 .video-gallery-container {
+    /* flex: 0 0 40vw; */
     height: 100dvh;
     width: 100%;
     margin: 0;
@@ -44,9 +46,7 @@
     overflow: hidden;
 }
 
-/* Hover blur */
-.gallery-container img:hover,
-.gallery-container .hero-video:hover {
+.gallery-container img:hover, .gallery-container .hero-video:hover {
     filter: blur(6px);
 }
 
@@ -54,12 +54,12 @@
 .gallery-container img {
     transition: filter 0.4s ease;
 }
+
 .gallery-container img.blurred {
     filter: blur(6px);
 }
 /* END */
 
-/* Links/images fill the container */
 .gallery-container a,
 .gallery-container img {
     display: block;
@@ -67,7 +67,6 @@
     height: 100%;
 }
 
-/* Images */
 .gallery-container img {
     object-fit: cover;
     overflow: hidden;
@@ -75,14 +74,13 @@
 
 /* MOTION */
 .hero-video {
-    width: 100%;
-    height: 100%;
+    width:100%;
+    height:100%;
     object-fit: cover; /* fill & crop to container */
     display: block;
     overflow: hidden;
 }
 
-/* Tag / name pill */
 .gallery-name {
     position: absolute;
     bottom: 0;
@@ -101,6 +99,7 @@
     text-transform: uppercase;
 }
 
+
 /* page name */
 .page-name {
     position: absolute;
@@ -118,6 +117,7 @@
 
 .page-name a {
     text-decoration: none;
+    /* font-size: 40px; */
     cursor: pointer;
 }
 
@@ -125,9 +125,7 @@
     text-transform: uppercase;
 }
 
-.page-name a:hover,
-.page-name a:active,
-.page-name a:focus {
+.page-name a:hover, .page-name a:active, .page-name a:focus {
     opacity: 0.7;
 }
 
@@ -163,40 +161,47 @@
     text-transform: uppercase;
 }
 
+
 /******** MEDIA QUERIES *******/
 
 /* XXL LARGE DESKTOP */
 @media (max-width: 1536px) {
-    .gallery-container { flex-basis: 45%; }
-    .gallery-container.landscape { flex-basis: 75%; }
+    .gallery-container {
+        min-width: 45%;
+    }
 }
 
 /* XL LARGE DESKTOP */
 @media (max-width: 1280px) {
-    .gallery-container { flex-basis: 55%; }
-    .gallery-container.landscape { flex-basis: 85%; }
+    .gallery-container {
+        min-width: 55%;
+    }
 }
 
 /* LARGE DESKTOP / TABLET */
 @media (max-width: 1024px) {
-    .gallery-container { flex-basis: 65%; }
-    .gallery-container.landscape { flex-basis: 90%; }
+    .gallery-container {
+        min-width: 65%;
+    }
 }
 
 /* TABLET / LARGE PHONE */
 @media (max-width: 768px) {
-    .gallery-container { flex-basis: 75%; }
-    .gallery-container.landscape { flex-basis: 95%; }
+    .gallery-container {
+        min-width: 75%;
+    }
 }
 
 /* SMALL TABLET / MOBILE LANDSCAPE */
 @media (max-width: 640px) {
-    .gallery-container { flex-basis: 85%; }
-    .gallery-container.landscape { flex-basis: 100%; }
+    .gallery-container {
+        min-width: 85%;
+    }
 }
 
 /* MOBILE */
 @media (max-width: 480px) {
-    .gallery-container { flex-basis: 95%; }
-    .gallery-container.landscape { flex-basis: 100%; }
+    .gallery-container {
+        min-width: 95%;
+    }
 }
