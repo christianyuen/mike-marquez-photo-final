@@ -75,7 +75,7 @@
     .side-menu__nav { 
     display: flex; 
     flex-direction: column; 
-    padding: 130px 50px; 
+    padding: 100px 50px; 
     }
 }
 
@@ -206,4 +206,5 @@
     font-weight: 100;
     font-size: 12px;
 }
+
 
