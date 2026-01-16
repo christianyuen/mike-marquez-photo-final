@@ -157,6 +157,10 @@ html, body { height: 100%; margin: 0; }
     pointer-events: none;
 }
 
+.gallery-name-main h2 {
+    text-transform: uppercase;
+}
+
 
 /******** MEDIA QUERIES *******/
 
