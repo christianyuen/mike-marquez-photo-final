@@ -99,6 +99,7 @@ html, body { height: 100%; margin: 0; }
     text-transform: uppercase;
 }
 
+
 /* page name */
 .page-name {
     position: absolute;
@@ -139,6 +140,21 @@ html, body { height: 100%; margin: 0; }
 
 .gallery-container-unset img:hover {
     filter: unset;
+}
+
+/* GALLERY NAME MAIN */
+.gallery-name-main {
+    position: absolute;
+    bottom: 36px;
+    height: 30px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    background: black;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    transform: rotate(3deg);
+    pointer-events: none;
 }
 
 
